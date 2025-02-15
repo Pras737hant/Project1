@@ -19,6 +19,13 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x  # Change based on your project version
+          dotnet-version: 8.0.x  # Change this if using a different .NET version
 
-      -
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Project
+        run: dotnet build --configuration Release
+
+      - name: Run Tests
+        run: dotnet test --configuration Release --no-build --verbosity normal
